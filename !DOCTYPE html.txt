@@ -1,0 +1,551 @@
+<!DOCTYPE html>
+<html lang="en" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Jane Doe | Photography Portfolio</title>
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Google Fonts (Inter) -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <!-- Feather Icons (for mobile menu) -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        /* Apply Inter font family */
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Custom hero background */
+        .hero-bg {
+            background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://placehold.co/1920x1080/333/FFF?text=Hero+Image');
+            background-size: cover;
+            background-position: center;
+            background-attachment: fixed;
+        }
+
+        /* Simple fade-in animation for gallery items */
+        .gallery-item {
+            animation: fadeIn 0.5s ease-in-out;
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+    </style>
+</head>
+<body class="bg-gray-900 text-gray-200">
+
+    <!-- ========== Header & Navigation ========== -->
+    <header class="bg-gray-900/80 backdrop-blur-md fixed top-0 left-0 right-0 z-50 shadow-lg">
+        <nav class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-20">
+                <!-- Logo / Site Title -->
+                <a href="#home" class="text-3xl font-bold text-white tracking-tight">
+                    Jane Doe
+                </a>
+                
+                <!-- Desktop Navigation -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home" class="text-gray-300 hover:text-white transition duration-300">Home</a>
+                    <a href="#gallery" class="text-gray-300 hover:text-white transition duration-300">Gallery</a>
+                    <a href="#about" class="text-gray-300 hover:text-white transition duration-300">About</a>
+                    <a href="#contact" class="text-gray-300 hover:text-white transition duration-300">Contact</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-button" class="text-gray-300 hover:text-white focus:outline-none">
+                        <i data-feather="menu" class="h-6 w-6"></i>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden absolute top-20 left-0 right-0 bg-gray-900 shadow-xl">
+            <div class="flex flex-col space-y-4 p-5">
+                <a href="#home" class="mobile-nav-link text-gray-300 hover:text-white transition duration-300 block px-3 py-2 rounded-md text-base font-medium">Home</a>
+                <a href="#gallery" class="mobile-nav-link text-gray-300 hover:text-white transition duration-300 block px-3 py-2 rounded-md text-base font-medium">Gallery</a>
+                <a href="#about" class="mobile-nav-link text-gray-300 hover:text-white transition duration-300 block px-3 py-2 rounded-md text-base font-medium">About</a>
+                <a href="#contact" class="mobile-nav-link text-gray-300 hover:text-white transition duration-300 block px-3 py-2 rounded-md text-base font-medium">Contact</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <!-- ========== 1. Hero Section ========== -->
+        <section id="home" class="h-screen w-full flex items-center justify-center text-center hero-bg relative">
+            <div class="flex flex-col items-center px-4">
+                <h1 class="text-5xl md:text-7xl lg:text-8xl font-black text-white leading-tight">
+                    Capturing Life's Moments
+                </h1>
+                <p class="text-xl md:text-2xl text-gray-300 mt-6 max-w-2xl">
+                    Specializing in portrait, landscape, and event photography.
+                </p>
+                <a href="#gallery" class="mt-10 px-8 py-4 bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition duration-300 transform hover:scale-105">
+                    View My Work
+                </a>
+            </div>
+            <!-- Scroll Down Arrow -->
+            <a href="#gallery" class="absolute bottom-10 animate-bounce">
+                <i data-feather="arrow-down" class="h-8 w-8 text-white"></i>
+            </a>
+        </section>
+
+        <!-- ========== 2. Gallery Section ========== -->
+        <section id="gallery" class="py-24 sm:py-32 bg-gray-900">
+            <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl md:text-5xl font-bold text-white text-center">
+                    Portfolio
+                </h2>
+                <p class="text-lg text-gray-400 text-center mt-4 mb-12 max-w-xl mx-auto">
+                    A selection of my favorite shots. Click on any category to filter the gallery.
+                </p>
+
+                <!-- Filter Buttons -->
+                <div class="flex flex-wrap justify-center gap-4 mb-12">
+                    <button class="filter-btn px-6 py-2 rounded-full bg-blue-600 text-white font-semibold shadow-md" data-filter="all">All</button>
+                    <button class="filter-btn px-6 py-2 rounded-full bg-gray-800 text-gray-300 hover:bg-gray-700 transition" data-filter="portraits">Portraits</button>
+                    <button class="filter-btn px-6 py-2 rounded-full bg-gray-800 text-gray-300 hover:bg-gray-700 transition" data-filter="landscapes">Landscapes</button>
+                    <button class="filter-btn px-6 py-2 rounded-full bg-gray-800 text-gray-300 hover:bg-gray-700 transition" data-filter="events">Events</button>
+                </div>
+
+                <!-- Image Grid -->
+                <div id="gallery-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 lg:gap-8">
+                    <!-- Gallery items will be populated by JS, but here are examples -->
+                    <!-- Item 1: Portrait -->
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-xl cursor-pointer" data-category="portraits">
+                        <img src="https://placehold.co/600x400/555/FFF?text=Portrait+1" alt="Portrait 1" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-500 flex items-center justify-center">
+                            <p class="text-white text-lg font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-500">View Photo</p>
+                        </div>
+                    </div>
+                    <!-- Item 2: Landscape -->
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-xl cursor-pointer" data-category="landscapes">
+                        <img src="https://placehold.co/600x400/464/FFF?text=Landscape+1" alt="Landscape 1" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-500 flex items-center justify-center">
+                            <p class="text-white text-lg font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-500">View Photo</p>
+                        </div>
+                    </div>
+                    <!-- Item 3: Event -->
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-xl cursor-pointer" data-category="events">
+                        <img src="https://placehold.co/600x400/644/FFF?text=Event+1" alt="Event 1" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-500 flex items-center justify-center">
+                            <p class="text-white text-lg font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-500">View Photo</D>
+                        </div>
+                    </div>
+                    <!-- Item 4: Landscape -->
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-xl cursor-pointer" data-category="landscapes">
+                        <img src="https://placehold.co/600x400/456/FFF?text=Landscape+2" alt="Landscape 2" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-500 flex items-center justify-center">
+                            <p class="text-white text-lg font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-500">View Photo</p>
+                        </div>
+                    </div>
+                    <!-- Item 5: Portrait -->
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-xl cursor-pointer" data-category="portraits">
+                        <img src="https://placehold.co/600x400/654/FFF?text=Portrait+2" alt="Portrait 2" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-500 flex items-center justify-center">
+                            <p class="text-white text-lg font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-500">View Photo</p>
+                        </div>
+                    </div>
+                    <!-- Item 6: Event -->
+                    <div class="gallery-item group relative overflow-hidden rounded-lg shadow-xl cursor-pointer" data-category="events">
+                        <img src="https://placehold.co/600x400/446/FFF?text=Event+2" alt="Event 2" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-500">
+                        <div class="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-60 transition-all duration-500 flex items-center justify-center">
+                            <p class="text-white text-lg font-bold opacity-0 group-hover:opacity-100 transition-opacity duration-500">View Photo</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== 3. About Section ========== -->
+        <section id="about" class="py-24 sm:py-32 bg-gray-800">
+            <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-12 lg:gap-20 items-center">
+                    <!-- About Image -->
+                    <div class="w-full">
+                        <img src="https://placehold.co/600x600/777/FFF?text=Jane+Doe" alt="About Jane Doe" class="rounded-lg shadow-2xl w-full h-auto object-cover aspect-square">
+                    </div>
+                    
+                    <!-- About Text -->
+                    <div class="w-full">
+                        <h2 class="text-4xl md:text-5xl font-bold text-white mb-6">
+                            About Me
+                        </h2>
+                        <p id="bio-p1" class="text-lg text-gray-300 leading-relaxed mb-6">
+                            Hi, I'm Jane Doe, a passionate photographer based in New York City. I believe that every picture tells a story, and my goal is to capture the unique essence of every moment, person, and place I photograph.
+                        </p>
+                        <p id="bio-p2" class="text-lg text-gray-300 leading-relaxed mb-8">
+                            With over 10 years of experience, I've had the privilege of working on a diverse range of projects, from intimate portraits and family gatherings to large-scale corporate events and breathtaking landscapes.
+                        </p>
+
+                        <!-- Gemini AI Feature: Bio Generator -->
+                        <div class="bg-gray-700/50 rounded-lg p-6 my-8 border border-gray-600">
+                            <h4 class="text-xl font-semibold text-white mb-3">✨ Try a New Bio</h4>
+                            <p class="text-gray-400 mb-4 text-sm">Enter a few keywords, and let AI generate a new bio for you.</p>
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <input type="text" id="bio-keywords" placeholder="e.g., Passionate, NYC, weddings, 10 years" class="w-full p-3 rounded-lg bg-gray-800 border border-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none text-white shadow-sm">
+                                <button id="generate-bio-btn" class="flex-shrink-0 flex items-center justify-center px-6 py-3 bg-purple-600 text-white font-semibold rounded-lg shadow-lg hover:bg-purple-700 transition duration-300">
+                                    <span class="btn-text">Generate</span>
+                                    <!-- Spinner SVG (hidden by default) -->
+                                    <svg class="spinner animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                        <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                        <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                                    </svg>
+                                </button>
+                            </div>
+                        </div>
+
+                        <a href="#contact" class="px-8 py-3 bg-blue-600 text-white text-lg font-semibold rounded-lg shadow-lg hover:bg-blue-700 transition duration-300">
+                            Let's Work Together
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== 4. Contact Section ========== -->
+        <section id="contact" class="py-24 sm:py-32 bg-gray-900">
+            <div class="container mx-auto max-w-3xl px-4 sm:px-6 lg:px-8">
+                <h2 class="text-4xl md:text-5xl font-bold text-white text-center">
+                    Get in Touch
+                </h2>
+                <p class="text-lg text-gray-400 text-center mt-4 mb-12 max-w-xl mx-auto">
+                    Have a project in mind, a question, or just want to say hi? Fill out the form below, and I'll get back to you as soon as possible.
+                </p>
+
+                <!-- Contact Form -->
+                <form action="#" method="POST" class="space-y-6">
+                    <div>
+                        <label for="name" class="block text-sm font-medium text-gray-300">Full Name</label>
+                        <div class="mt-1">
+                            <input type="text" name="name" id="name" required
+                                   class="w-full p-4 rounded-lg bg-gray-800 border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none text-white shadow-sm">
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <label for="email" class="block text-sm font-medium text-gray-300">Email Address</label>
+                        <div class="mt-1">
+                            <input type="email" name="email" id="email" required
+                                   class="w-full p-4 rounded-lg bg-gray-800 border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none text-white shadow-sm">
+                        </div>
+                    </div>
+
+                    <!-- Gemini AI Feature: Inquiry Drafter -->
+                    <div class="bg-gray-800/60 rounded-lg p-6 my-4 border border-gray-700 space-y-4">
+                        <h4 class="text-lg font-semibold text-white">✨ Need help drafting your message?</h4>
+                        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+                            <div>
+                                <label for="shoot-type" class="block text-sm font-medium text-gray-300">Type of Shoot</label>
+                                <input type="text" name="shoot-type" id="shoot-type" placeholder="e.g., Wedding, Portrait" class="mt-1 w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none text-white shadow-sm">
+                            </div>
+                            <div>
+                                <label for="shoot-location" class="block text-sm font-medium text-gray-300">Location</label>
+                                <input type="text" name="shoot-location" id="shoot-location" placeholder="e.g., Brooklyn, NY" class="mt-1 w-full p-3 rounded-lg bg-gray-700 border border-gray-600 focus:ring-2 focus:ring-blue-500 focus:outline-none text-white shadow-sm">
+                            </div>
+                        </div>
+                        <button id="draft-message-btn" type="button" class="w-full flex items-center justify-center py-3 px-6 border border-transparent rounded-lg shadow-lg text-md font-medium text-white bg-purple-600 hover:bg-purple-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-purple-500 transition duration-300">
+                            <span class="btn-text">Draft Inquiry Message</span>
+                            <!-- Spinner SVG (hidden by default) -->
+                            <svg class="spinner animate-spin -ml-1 mr-3 h-5 w-5 text-white hidden" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                                <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                                <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"></path>
+                            </svg>
+                        </button>
+                    </div>
+                    <!-- End Gemini Feature -->
+
+                    <div>
+                        <label for="message" class="block text-sm font-medium text-gray-300">Message</label>
+                        <div class="mt-1">
+                            <textarea id="message" name="message" rows="4" required
+                                      class="w-full p-4 rounded-lg bg-gray-800 border border-gray-700 focus:ring-2 focus:ring-blue-500 focus:outline-none text-white shadow-sm"></textarea>
+                        </div>
+                    </div>
+                    
+                    <div>
+                        <button type="submit"
+                                class="w-full flex justify-center py-4 px-6 border border-transparent rounded-lg shadow-lg text-lg font-medium text-white bg-blue-600 hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-blue-500 transition duration-300">
+                            Send Message
+                        </button>
+                    </div>
+                </form>
+            </div>
+        </section>
+    </main>
+
+    <!-- ========== Footer ========== -->
+    <footer class="bg-gray-800 border-t border-gray-700">
+        <div class="container mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 py-12 text-center">
+            <div class="flex justify-center space-x-6 mb-6">
+                <!-- Replace with actual links -->
+                <a href="#" class="text-gray-400 hover:text-white transition">
+                    <i data-feather="instagram" class="h-6 w-6"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition">
+                    <i data-feather="twitter" class="h-6 w-6"></i>
+                </a>
+                <a href="#" class="text-gray-400 hover:text-white transition">
+                    <i data-feather="facebook" class="h-6 w-6"></i>
+                </a>
+            </div>
+            <p class="text-gray-500">
+                &copy; 2025 Jane Doe Photography. All rights reserved.
+            </p>
+        </div>
+    </footer>
+
+    <!-- ========== Message Modal ========== -->
+    <div id="message-modal" class="fixed inset-0 bg-gray-900 bg-opacity-75 flex items-center justify-center z-[100] hidden transition-opacity duration-300" aria-labelledby="modal-title" role="dialog" aria-modal="true">
+        <div class="bg-gray-800 rounded-lg shadow-xl p-6 w-11/12 max-w-md text-center transform transition-all scale-95 opacity-0" id="modal-content">
+            <p id="modal-message" class="text-lg text-white"></p>
+            <button id="modal-close-btn" class="mt-6 px-6 py-2 bg-blue-600 text-white rounded-lg hover:bg-blue-700 transition duration-300">Close</button>
+        </div>
+    </div>
+
+    <!-- ========== JavaScript ========== -->
+    <script>
+        // Feather Icons
+        feather.replace();
+
+        // Mobile Menu Toggle
+        const menuButton = document.getElementById('mobile-menu-button');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navLinks = mobileMenu.querySelectorAll('.mobile-nav-link');
+
+        menuButton.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Gallery Filter
+        const filterButtons = document.querySelectorAll('.filter-btn');
+        const galleryItems = document.querySelectorAll('.gallery-item');
+
+        filterButtons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Get the filter value
+                const filter = button.getAttribute('data-filter');
+
+                // Update button active state
+                filterButtons.forEach(btn => {
+                    btn.classList.remove('bg-blue-600', 'text-white');
+                    btn.classList.add('bg-gray-800', 'text-gray-300');
+                });
+                button.classList.add('bg-blue-600', 'text-white');
+                button.classList.remove('bg-gray-800', 'text-gray-300');
+
+                // Filter the gallery items
+                galleryItems.forEach(item => {
+                    if (filter === 'all' || item.getAttribute('data-category') === filter) {
+                        item.style.display = 'block';
+                        // We add the class back to re-trigger animation
+                        item.classList.remove('gallery-item');
+                        void item.offsetWidth; // Trigger reflow
+                        item.classList.add('gallery-item');
+                    } else {
+                        item.style.display = 'none';
+                    }
+                });
+            });
+        });
+
+        // ========== Gemini API Features ==========
+
+        // --- Modal ---
+        const modal = document.getElementById('message-modal');
+        const modalContent = document.getElementById('modal-content');
+        const modalMessage = document.getElementById('modal-message');
+        const modalCloseBtn = document.getElementById('modal-close-btn');
+
+        function showMessage(message, isError = false) {
+            modalMessage.textContent = message;
+            modalMessage.className = isError ? 'text-lg text-red-400' : 'text-lg text-white';
+            modal.classList.remove('hidden');
+            setTimeout(() => {
+                modal.classList.add('opacity-100');
+                modalContent.classList.add('scale-100', 'opacity-100');
+                modalContent.classList.remove('scale-95', 'opacity-0');
+            }, 10);
+        }
+
+        modalCloseBtn.addEventListener('click', () => {
+            modal.classList.remove('opacity-100');
+            modal.classList.add('opacity-0');
+            modalContent.classList.remove('scale-100', 'opacity-100');
+            modalContent.classList.add('scale-95', 'opacity-0');
+            setTimeout(() => modal.classList.add('hidden'), 300);
+        });
+        
+        // --- API Call Helper ---
+        /**
+         * Calls the Gemini API with exponential backoff.
+         * @param {string} prompt The prompt to send to the API.
+         * @returns {Promise<string>} The generated text.
+         */
+        async function callGemini(prompt) {
+            const apiKey = ""; // Leave empty, as per instructions
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-09-2025:generateContent?key=${apiKey}`;
+            
+            const payload = {
+                contents: [{ parts: [{ text: prompt }] }],
+                systemInstruction: {
+                    parts: [{ text: "You are a helpful creative assistant. Keep your responses concise, professional, and directly useful for the user's request." }]
+                }
+            };
+
+            let retries = 3;
+            let delay = 1000;
+
+            for (let i = 0; i < retries; i++) {
+                try {
+                    const response = await fetch(apiUrl, {
+                        method: 'POST',
+                        headers: { 'Content-Type': 'application/json' },
+                        body: JSON.stringify(payload)
+                    });
+
+                    if (!response.ok) {
+                        const errorBody = await response.text();
+                        console.error(`HTTP error! status: ${response.status}`, errorBody);
+                        throw new Error(`HTTP error! status: ${response.status}`);
+                    }
+
+                    const result = await response.json();
+                    const candidate = result.candidates?.[0];
+
+                    if (candidate && candidate.content?.parts?.[0]?.text) {
+                        return candidate.content.parts[0].text.trim();
+                    } else {
+                        console.error("Invalid response structure:", result);
+                        throw new Error("Invalid response structure from API.");
+                    }
+                } catch (error) {
+                    console.error(`Attempt ${i + 1} failed:`, error.message);
+                    if (i === retries - 1) {
+                        // Last retry failed
+                        throw error;
+                    }
+                    await new Promise(resolve => setTimeout(resolve, delay));
+                    delay *= 2; // Exponential backoff
+                }
+            }
+            // This line should not be reachable, but as a fallback:
+            throw new Error("API call failed after all retries.");
+        }
+
+        // --- Feature 1: Bio Generator ---
+        const generateBioBtn = document.getElementById('generate-bio-btn');
+        const bioKeywordsInput = document.getElementById('bio-keywords');
+        const bioP1 = document.getElementById('bio-p1');
+        const bioP2 = document.getElementById('bio-p2');
+
+        generateBioBtn.addEventListener('click', async () => {
+            const keywords = bioKeywordsInput.value;
+            if (!keywords) {
+                showMessage("Please enter some keywords first.", true);
+                return;
+            }
+
+            // Show loading state
+            const btnText = generateBioBtn.querySelector('.btn-text');
+            const spinner = generateBioBtn.querySelector('.spinner');
+            btnText.classList.add('hidden');
+            spinner.classList.remove('hidden');
+            generateBioBtn.disabled = true;
+
+            const prompt = `Write a professional and passionate 'About Me' section for a photographer's portfolio. Base it on these keywords: "${keywords}". It should be exactly two paragraphs. Respond ONLY with the two paragraphs, separated by a single newline character (\\n). Do not include any other text or formatting.`;
+
+            try {
+                const generatedBio = await callGemini(prompt);
+                const paragraphs = generatedBio.split('\n');
+
+                if (paragraphs.length >= 2) {
+                    bioP1.textContent = paragraphs[0];
+                    bioP2.textContent = paragraphs[1];
+                    showMessage("Bio updated successfully!");
+                } else {
+                    // Handle single-paragraph response
+                    bioP1.textContent = generatedBio;
+                    bioP2.textContent = ""; // Clear second paragraph
+                    showMessage("Bio updated, but format was unexpected. You may need to adjust.", true);
+                }
+
+            } catch (error) {
+                console.error("Failed to generate bio:", error);
+                showMessage("Error generating bio. Please check the console and try again.", true);
+            } finally {
+                // Hide loading state
+                btnText.classList.remove('hidden');
+                spinner.classList.add('hidden');
+                generateBioBtn.disabled = false;
+            }
+        });
+
+        // --- Feature 2: Inquiry Drafter ---
+        const draftMessageBtn = document.getElementById('draft-message-btn');
+        const shootTypeInput = document.getElementById('shoot-type');
+        const shootLocationInput = document.getElementById('shoot-location');
+        const nameInput = document.getElementById('name');
+        const messageTextarea = document.getElementById('message');
+
+        draftMessageBtn.addEventListener('click', async () => {
+            const shootType = shootTypeInput.value || "general photography";
+            const location = shootLocationInput.value || "the local area";
+            const name = nameInput.value || "a potential client";
+
+            // Show loading state
+            const btnText = draftMessageBtn.querySelector('.btn-text');
+            const spinner = draftMessageBtn.querySelector('.spinner');
+            btnText.classList.add('hidden');
+            spinner.classList.remove('hidden');
+            draftMessageBtn.disabled = true;
+
+            const prompt = `Draft a polite and professional inquiry message to a photographer named Jane Doe. The sender's name is "${name}". They are interested in a "${shootType}" shoot in "${location}". The message should politely ask about her availability and pricing details. Respond with ONLY the message text, suitable for a textarea.`;
+
+            try {
+                const draftedMessage = await callGemini(prompt);
+                messageTextarea.value = draftedMessage;
+                // Focus and adjust height
+                messageTextarea.focus();
+                messageTextarea.style.height = 'auto';
+                messageTextarea.style.height = (messageTextarea.scrollHeight) + 'px';
+
+            } catch (error) {
+                console.error("Failed to draft message:", error);
+                showMessage("Error drafting message. Please check the console and try again.", true);
+            } finally {
+                // Hide loading state
+                btnText.classList.remove('hidden');
+                spinner.classList.add('hidden');
+                draftMessageBtn.disabled = false;
+            }
+        });
+
+    </script>
+
+</body>
+</html>
+
