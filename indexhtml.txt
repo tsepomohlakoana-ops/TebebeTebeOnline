@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <title>Your Name - Portfolio</title>
+    
+    <style>
+        /* Basic styling for a clean look */
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f8f9fa;
+            color: #212529;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        .container {
+            max-width: 600px;
+            margin: 20px;
+            padding: 40px;
+            background-color: #ffffff;
+            border-radius: 8px;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.05);
+        }
+        h1 {
+            color: #343a40;
+            margin-bottom: 10px;
+        }
+        p {
+            font-size: 1.1rem;
+            color: #495057;
+            margin-bottom: 30px;
+        }
+        .github-button {
+            display: inline-block;
+            padding: 12px 24px;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #ffffff;
+            background-color: #24292e; /* GitHub's dark color */
+            text-decoration: none;
+            border-radius: 6px;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+        }
+        .github-button:hover {
+            background-color: #4a525a;
+            transform: translateY(-2px); /* Slight lift on hover */
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        
+        <h1>Your Name Here</h1>
+        
+        <p>
+            Welcome to my website! This portfolio is currently under construction.
+            In the meantime, please check out my projects and contributions on GitHub.
+        </p>
+
+        <a href="https://github.com/YOUR_USERNAME" class="github-button" target="_blank" rel="noopener noreferrer">
+            Visit My GitHub Profile
+        </a>
+        
+    </div>
+
+</body>
+</html>
